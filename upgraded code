@@ -1,0 +1,69 @@
+from PIL import Image
+import random
+import os
+import shutil
+
+largeStar = Image.open('largeStar.png')
+smallStar = Image.open('smallStar.png')
+blankImage = Image.open('blank.png')
+circleImage = Image.open('Circle only-01.png')
+
+
+
+i = 50
+theNumber = 0
+minorDeviation = 0
+secondMinorDeviation = 0
+radius = 630
+radiusSquared = radius**2
+
+while i < 50:
+
+  starCopyIm = blankImage.copy()
+
+
+  starCopyIm.paste(circleImage, (0,0))
+
+
+  for left in range(500, 2000, 100):
+    for top in range(1000, 2500, 100):
+     
+      theNumber = random.randint(1,101)
+      minorDeviation = random.randint(-20,20)
+      secondMinorDeviation = random.randint(-20,20)
+
+      if theNumber >= 92:
+        if (top-1700)**2 + (left-1200)**2 <= radiusSquared:
+          top = top + minorDeviation
+          left = left - secondMinorDeviation
+          starCopyIm.paste(largeStar, (left, top))
+      elif theNumber <= 17:
+        if (top-1700)**2 + (left-1200)**2 <=radiusSquared:
+          top = top + minorDeviation
+          left = left - secondMinorDeviation
+          starCopyIm.paste(smallStar, (left, top)) 
+
+  starCopyIm.save('Stars Folder/stars{0}.png'.format(i + 1))
+  i = i + 1
+
+
+#0 to 530
+"""
+counter = 0
+
+while counter < 1: 
+
+
+  shutil.move('Stars Folder/stars{}.png'.format(counter + 1), 'stars{}.png'.format(counter + 1))
+  counter = counter + 1
+
+
+counter = 1
+
+while counter < 50: 
+
+
+  os.remove('stars{}.png'.format(counter + 1))
+  counter = counter + 1
+
+"""
