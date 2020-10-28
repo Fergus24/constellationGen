@@ -1,0 +1,54 @@
+
+itteration = 0
+
+theNumber = 0
+minorDeviation = 0
+secondMinorDeviation = 0
+radius = 630
+radiusSquared = radius**2
+namesList = ["all the way","to the","moon and back"]
+length = len(namesList)
+
+W, H = circleImage.size
+
+while itteration < 20:
+
+  starCopyIm = blankImage.copy()
+  circleImageCopy = circleImage.copy()
+  draw = ImageDraw.Draw(circleImageCopy)
+
+  if itteration < length:  
+    fontsize = 100
+    font = ImageFont.truetype("FreeSerifBoldItalic",fontsize)
+    message = namesList[itteration]
+    w, h = draw.textsize(message,font)
+    color = 'rgb(0, 0, 0)' # black color
+
+    draw.text(((W-w)/2,2600), message, fill=color, font=font)
+
+
+  starCopyIm.paste(circleImageCopy, (0,0))
+
+
+  for left in range(500, 2000, 100):
+    for top in range(1000, 2500, 100):
+     
+      theNumber = random.randint(1,101)
+      minorDeviation = random.randint(-20,20)
+      secondMinorDeviation = random.randint(-20,20)
+
+      if theNumber >= 92:
+        if (top-1700)**2 + (left-1200)**2 <= radiusSquared:
+          top = top + minorDeviation
+          left = left - secondMinorDeviation
+          starCopyIm.paste(largeStar, (left, top))
+      elif theNumber <= 17:
+        if (top-1700)**2 + (left-1200)**2 <=radiusSquared:
+          top = top + minorDeviation
+          left = left - secondMinorDeviation
+          starCopyIm.paste(smallStar, (left, top)) 
+
+
+  starCopyIm.save('Stars Folder/stars{0}.png'.format(itteration + 1))
+  itteration = itteration + 1
+
