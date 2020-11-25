@@ -1,0 +1,11 @@
+Overview of project
+
+In place of a readme
+
+
+Quick note of explination, the program creates constilations by assiging a random chance of a particular star type being in a particular square, 
+then moves that start a random amount up, down side to side.
+
+Whilst it is scalable I should, at some point, stop refering to the spesfic stars and refer to database, so that other images could be more easily imported. 
+
+Additional backgrounds would be a plus
